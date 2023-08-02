@@ -1,0 +1,17 @@
+version: "0.1" # Version of the docker compose file
+services:
+  ysyx:
+    build: 
+      context: . #current dir as build context
+      args:
+        # Fill in the values for the arguments to pass to the Dockerfile
+        # You will need 2 args here
+    privileged: true # Enable privileged access to the container for easy display setup
+                     # Not the most secure. Really should use xauth here
+    network_mode: host # Use host network mode for the container
+    environment:
+      - DISPLAY # Pass the DISPLAY environment variable to the container
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix # Mount the X11 socket from the host to the container
+      - _________ # Mount the current directory from the host to /ysyx in the container
+    working_dir: /ysyx # Set the working directory for the container
